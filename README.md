@@ -1,0 +1,47 @@
+# 单账号/批量注册脚本
+
+这是一个基于 Playwright + 临时邮箱的注册脚本，支持单账号注册与批量并发注册，并在完成后导出账号信息和 Cookie。
+
+## 功能概览
+- 自动生成临时邮箱并获取验证码
+- 自动完成注册流程与周年礼包领取
+- 导出账号到 `accounts.txt`
+- 导出浏览器 Cookie 到 `cookies/`
+- 批量并发注册（可控制总数量与并发数）
+
+## 目录结构
+- `register.py` 入口脚本，负责注册、领取礼包、导出 Cookie
+- `mail_client.py` 临时邮箱客户端
+- `cookies/` 账号 Cookie 导出目录（运行时生成）
+- `accounts.txt` 账号列表（追加写入）
+
+## 环境准备
+```bash
+python -m venv .venv
+# 激活虚拟环境后安装依赖
+pip install -r requirements.txt
+python -m playwright install
+```
+
+## 使用方法
+单账号注册：
+```bash
+python register.py
+```
+
+批量注册（总数量 + 并发数）：
+```bash
+python register.py 10 3
+```
+
+参数说明：
+- 第一个参数：总注册数量
+- 第二个参数：并发数（可理解为线程数）
+
+## 输出说明
+- `accounts.txt`：追加保存账号与密码
+- `cookies/邮箱.json`：每个账号的 Cookie 文件
+
+## 注意事项
+- 并发数越高，资源占用越大，也可能导致失败率上升，建议逐步提高。
+"# Trae-" 
