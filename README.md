@@ -44,7 +44,7 @@
 python -m venv .venv
 # 激活虚拟环境后安装依赖
 pip install -r requirements.txt
-python -m playwright install
+python -m playwright install chromium
 ```
 
 ## 使用方法
